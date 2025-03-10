@@ -3,7 +3,7 @@
 [![](https://img.shields.io/badge/📖_How_to_use_DevExpress_Examples-e9f6fc?style=flat-square)](https://docs.devexpress.com/GeneralInformation/403183)
 [![](https://img.shields.io/badge/💬_Leave_Feedback-feecdd?style=flat-square)](#does-this-example-address-your-development-requirementsobjectives)
 <!-- default badges end -->
-# DevExpress Blazor AI Chat - Implement Function/Tool Calling
+# DevExpress Blazor AI Chat — Implement Function/Tool Calling
 
 This example uses function/tool calling with the DevExpress Blazor [`DxAIChat`](https://docs.devexpress.com/Blazor/DevExpress.AIIntegration.Blazor.Chat.DxAIChat) component. Function calling allows a model to invoke external functions or APIs in response to user queries.
 
@@ -39,52 +39,52 @@ string deploymentName = string.Empty;
 - The `GetWeatherTool` function retrieves weather information for a specified city.
 - The `System.ComponentModel.Description` attribute helps the AI model select and call the appropriate method (in this example this is the `GetWeather` method). By using this attribute, the AI-powered system can better analyze, select, and invoke the correct function when responding to user queries.
 
-```csharp
-using System.ComponentModel;
-using Microsoft.Extensions.AI;
+    ```csharp
+    using System.ComponentModel;
+    using Microsoft.Extensions.AI;
 
-namespace DXBlazorChatFunctionCalling.Services;
-public class CustomAIFunctions {
-    public static AIFunction GetWeatherTool => AIFunctionFactory.Create(GetWeather);
-    // Describe the function so the AI service understands its purpose
-    public static AIFunction GetWeatherTool => AIFunctionFactory.Create(GetWeather); 
-    [Description("Gets the current weather in the city")]
-    public static string GetWeather([Description("The name of the city")] string city) {
-      switch (city) {
-        case "Los Angeles":
-        case "LA":
-          return GetTemperatureValue(20);
-        case "London":
-          return GetTemperatureValue(15);
-        default:
-          return $"The information about the weather in {city} is not available.";
+    namespace DXBlazorChatFunctionCalling.Services;
+    public class CustomAIFunctions {
+        public static AIFunction GetWeatherTool => AIFunctionFactory.Create(GetWeather);
+        // Describe the function so the AI service understands its purpose
+        public static AIFunction GetWeatherTool => AIFunctionFactory.Create(GetWeather); 
+        [Description("Gets the current weather in the city")]
+        public static string GetWeather([Description("The name of the city")] string city) {
+        switch (city) {
+            case "Los Angeles":
+            case "LA":
+            return GetTemperatureValue(20);
+            case "London":
+            return GetTemperatureValue(15);
+            default:
+            return $"The information about the weather in {city} is not available.";
+            }
+        }
+        static string GetTemperatureValue(int value)
+        {
+        var valueInFahrenheits = value * 9 / 5 + 32;
+        return $"{valueInFahrenheits}\u00b0F ({value}\u00b0C)";
         }
     }
-    static string GetTemperatureValue(int value)
-    {
-      var valueInFahrenheits = value * 9 / 5 + 32;
-      return $"{valueInFahrenheits}\u00b0F ({value}\u00b0C)";
-    }
-}
-```
+    ```
 
 - To enable function calling in a chat client, you must first configure chat client options. Once configured, call the `UseFunctionInvocation()` method to activate function invocation.
 
-```csharp
-using Azure;
-using Azure.AI.OpenAI;
-using Microsoft.Extensions.AI;
-...
-IChatClient chatClient = new ChatClientBuilder(azureChatClient)
-    .ConfigureOptions(x =>
-    {
-        x.Tools = [CustomAIFunctions.GetWeatherTool];
-    })
-    .UseFunctionInvocation()
-    .Build();
+    ```csharp
+    using Azure;
+    using Azure.AI.OpenAI;
+    using Microsoft.Extensions.AI;
+    ...
+    IChatClient chatClient = new ChatClientBuilder(azureChatClient)
+        .ConfigureOptions(x =>
+        {
+            x.Tools = [CustomAIFunctions.GetWeatherTool];
+        })
+        .UseFunctionInvocation()
+        .Build();
 
-builder.Services.AddChatClient(chatClient);
-```
+    builder.Services.AddChatClient(chatClient);
+    ```
 
 When a user asks the AI Chat about the weather, the AI model automatically calls the `GetWeatherTool` function and returns the formatted result to the AI Chat control.
 
@@ -146,7 +146,7 @@ public class WeatherPlugin
 
 ## More Examples
 
-- [Blazor AI Chat - How to add the DevExpress Blazor AI Chat component to your next Blazor, MAUI, WPF, and WinForms application](https://github.com/DevExpress-Examples/devexpress-ai-chat-samples)
+- [Blazor AI Chat — How to add the DevExpress Blazor AI Chat component to your next Blazor, MAUI, WPF, and WinForms application](https://github.com/DevExpress-Examples/devexpress-ai-chat-samples)
 * [Blazor Grid and Report Viewer — Incorporate an AI Assistant (Azure OpenAI) in your next DevExpress-powered Blazor app](https://github.com/DevExpress-Examples/blazor-grid-and-report-viewer-integrate-ai-assistant)
 
 
