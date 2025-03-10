@@ -46,6 +46,8 @@ string deploymentName = string.Empty;
 
     namespace DXBlazorChatFunctionCalling.Services;
     public class CustomAIFunctions {
+
+        // Describe the function so the AI service understands its purpose.
         public static AIFunction GetWeatherTool => AIFunctionFactory.Create(GetWeather);
         [Description("Gets the current weather in the city")]
         public static string GetWeather([Description("The name of the city")] string city) {
