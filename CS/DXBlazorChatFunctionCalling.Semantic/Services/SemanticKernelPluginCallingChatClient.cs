@@ -18,21 +18,18 @@ namespace DXBlazorChatFunctionCalling.Semantic.Services {
             _executionSettings = new OpenAIPromptExecutionSettings() { ToolCallBehavior = ToolCallBehavior.AutoInvokeKernelFunctions };
         }
 
-        public async Task<ChatCompletion> CompleteAsync(IList<ChatMessage> chatMessages, ChatOptions? options = null, CancellationToken cancellationToken = default)
+        public async Task<ChatResponse> GetResponseAsync(IEnumerable<ChatMessage> chatMessages, ChatOptions? options = null, CancellationToken cancellationToken = default)
         {
             var history = GetChatHistory(chatMessages);
             ChatMessageContent message = await _chatCompletionService.GetChatMessageContentAsync(history, _executionSettings, _kernel, cancellationToken);
-            return new ChatCompletion(new ChatMessage(ChatRole.Assistant, message.Content));
+            return new ChatResponse(new ChatMessage(ChatRole.Assistant, message.Content));
         }
 
-        public async IAsyncEnumerable<StreamingChatCompletionUpdate> CompleteStreamingAsync(IList<ChatMessage> chatMessages, ChatOptions? options = null, CancellationToken cancellationToken = default)
+        public async IAsyncEnumerable<ChatResponseUpdate> GetStreamingResponseAsync(IEnumerable<ChatMessage> chatMessages, ChatOptions? options = null, CancellationToken cancellationToken = default)
         {
             var history = GetChatHistory(chatMessages);
             await foreach(var item in _chatCompletionService.GetStreamingChatMessageContentsAsync(history, _executionSettings, _kernel, cancellationToken)) {
-                yield return new StreamingChatCompletionUpdate() {
-                    Text = item.Content,
-                    Role = ChatRole.Assistant
-                };
+                yield return new ChatResponseUpdate(ChatRole.Assistant, item.Content);
             }
         }
         AuthorRole GetRole(ChatRole chatRole) {
@@ -43,7 +40,7 @@ namespace DXBlazorChatFunctionCalling.Semantic.Services {
             throw new Exception();
         }
 
-        private ChatHistory GetChatHistory(IList<ChatMessage> chatMessages)
+        private ChatHistory GetChatHistory(IEnumerable<ChatMessage> chatMessages)
         {
             var history = new ChatHistory(chatMessages.Select(x => new ChatMessageContent(GetRole(x.Role), x.Text)));
             return history;
