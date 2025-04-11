@@ -136,7 +136,7 @@ public class WeatherPlugin
 
 ## Documentation
 
-* [DevExpress Blazor AI Chat — Implement Function Calling (Blog Post)](https://community.devexpress.com/blogs/aspnet/archive/2025/02/26/devexpress-blazor-ai-chat-implement-function-calling.aspx)
+* [DevExpress Blazor AI Chat — Implement Function Calling (Blog Post)](https://community.devexpress.com/Blogs/aspnet/archive/2025/04/09/devexpress-blazor-ai-chat-implement-function-calling.aspx)
 * [DevExpress AI-powered Extensions for Blazor](https://docs.devexpress.com/Blazor/405228/ai-powered-extensions)
 * [DevExpress Blazor AI Chat Control](https://docs.devexpress.com/Blazor/DevExpress.AIIntegration.Blazor.Chat.DxAIChat)
 
