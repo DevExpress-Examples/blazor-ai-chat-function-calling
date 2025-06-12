@@ -16,12 +16,12 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
 
-builder.Services.AddDevExpressBlazor(options => { options.BootstrapVersion = DevExpress.Blazor.BootstrapVersion.v5; });
+builder.Services.AddDevExpressBlazor();
 builder.Services.AddMvc();
 
  var azureChatClient = new AzureOpenAIClient(
      new Uri(azureOpenAIEndpoint),
-     new AzureKeyCredential(azureOpenAIKey)).AsChatClient(deploymentName);
+     new AzureKeyCredential(azureOpenAIKey)).GetChatClient(deploymentName).AsIChatClient();
 
  IChatClient chatClient = new ChatClientBuilder(azureChatClient)
      .ConfigureOptions(x =>

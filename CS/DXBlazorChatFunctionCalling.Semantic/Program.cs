@@ -14,7 +14,7 @@ string deploymentName = string.Empty;
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
-builder.Services.AddDevExpressBlazor(options => { options.BootstrapVersion = DevExpress.Blazor.BootstrapVersion.v5; });
+builder.Services.AddDevExpressBlazor();
 builder.Services.AddMvc();
 
 var semanticKernelBuilder = Kernel.CreateBuilder();
