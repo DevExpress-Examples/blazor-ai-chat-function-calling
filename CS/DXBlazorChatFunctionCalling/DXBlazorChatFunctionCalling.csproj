@@ -6,7 +6,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Azure.AI.OpenAI" Version="2.2.0-beta.4" />
+        <PackageReference Include="Azure.AI.OpenAI" Version="2.2.0-beta.5" />
         <PackageReference Include="DevExpress.AIIntegration.Blazor.Chat" Version="25.2.*-*" />
         <PackageReference Include="DevExpress.AIIntegration.Blazor.Common" Version="25.2.*-*" />
         <PackageReference Include="DevExpress.AIIntegration.OpenAI" Version="25.2.*-*" />
