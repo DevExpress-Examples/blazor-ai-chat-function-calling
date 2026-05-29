@@ -10,7 +10,7 @@
         <PackageReference Include="DevExpress.AIIntegration.Blazor.Common" Version="25.2.*-*" />
         <PackageReference Include="DevExpress.AIIntegration.OpenAI" Version="25.2.*-*" />
         <PackageReference Include="DevExpress.Blazor.Themes" Version="25.2.*-*" />
-        <PackageReference Include="Microsoft.Extensions.AI" Version="9.7.1" />
+        <PackageReference Include="Microsoft.Extensions.AI" Version="9.8.0" />
         <PackageReference Include="Microsoft.SemanticKernel" Version="1.63.0" />
         <PackageReference Include="Microsoft.SemanticKernel.Connectors.OpenAI" Version="1.63.0" />
         <PackageReference Include="Microsoft.SemanticKernel.Plugins.Core" Version="1.62.0-preview" />
